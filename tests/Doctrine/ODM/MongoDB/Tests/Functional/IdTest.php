@@ -126,6 +126,22 @@ class IdTest extends \Doctrine\ODM\MongoDB\Tests\BaseTest
         $this->assertInstanceOf('Doctrine\ODM\MongoDB\Id\UuidGenerator', $class->idGenerator);
         $this->assertEquals('test', $class->idGenerator->getSalt());
     }
+
+    public function testDocumentIdTypeIsPreserved()
+    {
+        $user1 = new BasicIdUser('Numeric String');
+        $user1->id = '123';
+        $this->dm->persist($user1);
+        $this->dm->flush();
+
+        $user2 = new BasicIdUser('Integer');
+        $user1->id = 123;
+        $this->dm->persist($user2);
+        $this->dm->flush();
+
+        $this->assertSame($user1->id, '123');
+        $this->assertSame($user2->id, 123);
+    }
 }
 
 /** @ODM\Document */
@@ -211,6 +227,21 @@ class AlnumCharsUser
     public $id;
 
     /** @ODM\String(name="t") */
+    public $name;
+
+    public function __construct($name)
+    {
+        $this->name = $name;
+    }
+}
+
+/** @ODM\Document */
+class BasicIdUser
+{
+    /** @ODM\Id */
+    public $id;
+
+    /** @ODM\String */
     public $name;
 
     public function __construct($name)
