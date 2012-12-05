@@ -565,9 +565,6 @@ class DocumentPersister
                 $repository = $this->dm->getRepository($className);
                 $qb = $repository->createQueryBuilder()
                     ->field($class->identifier)->in($ids);
-                if (isset($hints[Query::HINT_SLAVE_OKAY])) {
-                    $qb->slaveOkay(true);
-                }
                 $query = $qb->getQuery();
                 $query->execute()->toArray();
             }
@@ -682,9 +679,6 @@ class DocumentPersister
             if (isset($mapping['skip'])) {
                 $cursor->skip($mapping['skip']);
             }
-            if (isset($hints[Query::HINT_SLAVE_OKAY])) {
-                $cursor->slaveOkay(true);
-            }
             $documents = $cursor->toArray();
             foreach ($documents as $documentData) {
                 $document = $this->uow->getById((string) $documentData['_id'], $class->rootDocumentName);
@@ -723,9 +717,6 @@ class DocumentPersister
         if (isset($mapping['skip'])) {
             $qb->skip($mapping['skip']);
         }
-        if (isset($hints[Query::HINT_SLAVE_OKAY])) {
-            $qb->slaveOkay(true);
-        }
         $documents = $qb->getQuery()->execute()->toArray();
         foreach ($documents as $key => $document) {
           if ($mapping['strategy'] === 'set') {
@@ -748,9 +739,6 @@ class DocumentPersister
         }
         if (isset($mapping['skip']) && $mapping['skip']) {
             $cursor->skip($mapping['skip']);
-        }
-        if (isset($hints[Query::HINT_SLAVE_OKAY])) {
-            $cursor->slaveOkay(true);
         }
         $documents = $cursor->toArray();
         foreach ($documents as $document) {

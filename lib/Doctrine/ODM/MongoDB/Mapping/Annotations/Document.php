@@ -27,5 +27,4 @@ final class Document extends AbstractDocument
     public $repositoryClass;
     public $indexes = array();
     public $requireIndexes = false;
-    public $slaveOkay;
 }

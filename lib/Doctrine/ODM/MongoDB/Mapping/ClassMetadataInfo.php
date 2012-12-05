@@ -175,11 +175,6 @@ class ClassMetadataInfo implements \Doctrine\Common\Persistence\Mapping\ClassMet
     public $distance;
 
     /**
-     * READ-ONLY: Whether or not reads for this class are okay to read from a slave.
-     */
-    public $slaveOkay = false;
-
-    /**
      * READ-ONLY: The array of indexes for the document collection.
      */
     public $indexes = array();
@@ -617,16 +612,6 @@ class ClassMetadataInfo implements \Doctrine\Common\Persistence\Mapping\ClassMet
     {
         $this->discriminatorMap[$value] = $this->name;
         $this->discriminatorValue = $value;
-    }
-
-    /**
-     * Sets whether or not reads for this class are okay to read from a slave.
-     *
-     * @param bool $slaveOkay
-     */
-    public function setSlaveOkay($slaveOkay)
-    {
-        $this->slaveOkay = $slaveOkay;
     }
 
     /**

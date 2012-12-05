@@ -51,7 +51,6 @@ class ClassMetadataTest extends \Doctrine\ODM\MongoDB\Tests\BaseTest
         $this->assertEquals(1, count($cm->fieldMappings));
         $this->assertEquals('customFileProperty', $cm->file);
         $this->assertEquals('customDistanceProperty', $cm->distance);
-        $this->assertTrue($cm->slaveOkay);
         $mapping = $cm->getFieldMapping('phonenumbers');
         $this->assertEquals('Documents\Bar', $mapping['targetDocument']);
     }

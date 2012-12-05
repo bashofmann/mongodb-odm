@@ -94,9 +94,6 @@ class YamlDriver extends FileDriver
         if (isset($element['requireIndexes'])) {
             $class->setRequireIndexes($element['requireIndexes']);
         }
-        if (isset($element['slaveOkay'])) {
-            $class->setSlaveOkay($element['slaveOkay']);
-        }
         if (isset($element['fields'])) {
             foreach ($element['fields'] as $fieldName => $mapping) {
                 if (is_string($mapping)) {

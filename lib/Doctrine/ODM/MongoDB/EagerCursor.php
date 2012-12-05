@@ -209,16 +209,4 @@ class EagerCursor implements \Doctrine\MongoDB\Iterator
         }
         return $this;
     }
-
-    /** @override */
-    public function slaveOkay($okay = true)
-    {
-        if ($okay) {
-            $this->hints[Query::HINT_SLAVE_OKAY] = true;
-        } else {
-            unset($this->hints[Query::HINT_SLAVE_OKAY]);
-        }
-        $this->cursor->slaveOkay($okay);
-        return $this;
-    }
 }

@@ -203,9 +203,6 @@ class Query extends \Doctrine\MongoDB\Query\Query
         if ($this->refresh) {
             $hints[self::HINT_REFRESH] = true;
         }
-        if ($this->query['slaveOkay'] === true) {
-            $hints[self::HINT_SLAVE_OKAY] = true;
-        }
 
         // Unwrap the BaseEagerCursor
         if ($results instanceof BaseEagerCursor) {

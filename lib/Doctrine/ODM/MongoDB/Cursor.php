@@ -158,18 +158,6 @@ class Cursor extends BaseCursor
     }
 
     /** @override */
-    public function slaveOkay($okay = true)
-    {
-        if ($okay) {
-            $this->hints[Query::HINT_SLAVE_OKAY] = true;
-        } else {
-            unset($this->hints[Query::HINT_SLAVE_OKAY]);
-        }
-        parent::slaveOkay($okay);
-        return $this;
-    }
-
-    /** @override */
     public function sort($fields)
     {
         $fields = $this->unitOfWork
